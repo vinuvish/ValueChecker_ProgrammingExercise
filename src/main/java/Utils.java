@@ -35,37 +35,47 @@ public abstract class Utils {
         return operatorMap;
     }
 
-    public static Map<Integer, Double> getPrefixMatchMap(Map<Integer, Double> operatorMap, String matchPrefix) {
+    public static Map<Integer, Double> getPrefixMatchMap(Map<Integer, Double> operatorMap, String matchPrefix) throws PrefixException {
         // define list to add operator prefix matches
         Map<Integer, Double> operatorPrefixMatchMap = new HashMap<>();
-        // Here is the business logic. it check against prefix whether
-        // given number starts with the prefix or not
-        for (Integer prefix : operatorMap.keySet()) {
-            if (matchPrefix.startsWith(prefix.toString())) {
-                operatorPrefixMatchMap.put(prefix, operatorMap.get(prefix));
+        try {
+            // Here is the business logic. it check against prefix whether
+            // given number starts with the prefix or not
+            for (Integer prefix : operatorMap.keySet()) {
+                if (matchPrefix.startsWith(prefix.toString())) {
+                    operatorPrefixMatchMap.put(prefix, operatorMap.get(prefix));
+                }
             }
+        } catch (Exception e) {
+            throw new PrefixException("Prefix Exception due to : " + e.getMessage());
         }
+
         return operatorPrefixMatchMap;
     }
 
-    public static double getLongPrefixPrice(Map<Integer, Double> prefixMap) {
-
+    public static double getLongPrefixPrice(Map<Integer, Double> prefixMap) throws PrefixException {
         double operatorCharge = 0.0;
-        // define AtomicInteger for hold the largest prefix
-        // used AtomicInteger because of the lambda usage
-        AtomicInteger longestPrefix = new AtomicInteger();
+        try {
 
-        // lambda for each function for get elements from map
-        if (prefixMap != null) {
-            prefixMap.forEach((key, value) -> {
-                // check longest value and assign to longestPrefix variable
-                if (key.toString().length() > longestPrefix.toString().length()) {
-                    longestPrefix.set(key);
-                }
-            });
-            // get the price by key
-            operatorCharge = prefixMap.get(longestPrefix.get());
+            // define AtomicInteger for hold the largest prefix
+            // used AtomicInteger because of the lambda usage
+            AtomicInteger longestPrefix = new AtomicInteger();
+
+            // lambda for each function for get elements from map
+            if (prefixMap != null) {
+                prefixMap.forEach((key, value) -> {
+                    // check longest value and assign to longestPrefix variable
+                    if (key.toString().length() > longestPrefix.toString().length()) {
+                        longestPrefix.set(key);
+                    }
+                });
+                // get the price by key
+                operatorCharge = prefixMap.get(longestPrefix.get());
+            }
+        } catch (Exception e) {
+            throw new PrefixException("Prefix Exception due to : " + e.getMessage());
         }
+
         return operatorCharge;
     }
 

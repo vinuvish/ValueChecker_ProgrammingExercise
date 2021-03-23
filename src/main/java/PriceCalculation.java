@@ -4,13 +4,11 @@ import java.util.Map;
 public class PriceCalculation extends Utils {
     static final String PATH = "src/main/java/data/";
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws PrefixException {
         String number = "4673212345";
         calculate(number);
-
     }
-
-    public static void calculate(String number) throws Exception {
+    public static void calculate(String number) throws PrefixException {
         try {
             //Initialize the HashMap for hold the data as key value pair
             Map<Integer, Double> operatorAMap = new HashMap<>();
@@ -25,14 +23,10 @@ public class PriceCalculation extends Utils {
             Map<Integer, Double> operatorAPrefixMatchMap = new HashMap<>();
             Map<Integer, Double> operatorBPrefixMatchMap = new HashMap<>();
 
-
             //calling getPrefixMatchList abstract method for get
             // matching prefix as list
             operatorAPrefixMatchMap = getPrefixMatchMap(operatorAMap, number);
             operatorBPrefixMatchMap = getPrefixMatchMap(operatorBMap, number);
-
-            System.out.println(operatorAPrefixMatchMap);
-            System.out.println(operatorBPrefixMatchMap);
 
             // condition for validating if matching prefix available or not
             if (!operatorAPrefixMatchMap.isEmpty()) {
@@ -47,10 +41,7 @@ public class PriceCalculation extends Utils {
                 System.out.println("No operator price available ");
             }
         } catch (Exception e) {
-            throw new Exception(e);
+            throw new PrefixException("Prefix Exception due to : "+e.getMessage());
         }
-
     }
-
-
 }
