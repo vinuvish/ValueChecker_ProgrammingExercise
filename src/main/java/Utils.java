@@ -5,8 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public abstract class
-Utils {
+public abstract class Utils {
     public static Map<Integer, Double> getDataFromFile(String fileName) {
         //Initialize the map for holding the prefix as key and price as value
         Map<Integer, Double> operatorMap = new HashMap<>();
@@ -36,7 +35,7 @@ Utils {
         return operatorMap;
     }
 
-    public static Map<Integer, Double> getPrefixMatchList(Map<Integer, Double> operatorMap, String matchPrefix) {
+    public static Map<Integer, Double> getPrefixMatchMap(Map<Integer, Double> operatorMap, String matchPrefix) {
         // define list to add operator prefix matches
         Map<Integer, Double> operatorPrefixMatchMap = new HashMap<>();
         // Here is the business logic. it check against prefix whether
@@ -60,10 +59,9 @@ Utils {
         if (prefixMap != null) {
             prefixMap.forEach((key, value) -> {
                 // check longest value and assign to longestPrefix variable
-                if (key.toString().length() > longestPrefix.get()) {
+                if (key.toString().length() > longestPrefix.toString().length()) {
                     longestPrefix.set(key);
                 }
-
             });
             // get the price by key
             operatorCharge = prefixMap.get(longestPrefix.get());
