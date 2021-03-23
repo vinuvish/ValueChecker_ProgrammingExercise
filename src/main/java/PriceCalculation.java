@@ -8,6 +8,7 @@ public class PriceCalculation extends Utils {
         String number = "4673212345";
         calculate(number);
     }
+
     public static void calculate(String number) throws PrefixException {
         try {
             //Initialize the HashMap for hold the data as key value pair
@@ -16,8 +17,8 @@ public class PriceCalculation extends Utils {
 
             // calling getDataFromFile abstract method for get the date
             // from the data file as hashmap
-            operatorAMap = getDataFromFile(PATH + "operator_a.txt");
-            operatorBMap = getDataFromFile(PATH + "operator_b.txt");
+            operatorAMap = getDataFromFile(PATH + "operator_a.csv");
+            operatorBMap = getDataFromFile(PATH + "operator_b.csv");
 
             //Initialize the HashMap for hold the match prefix
             Map<Integer, Double> operatorAPrefixMatchMap = new HashMap<>();
@@ -41,7 +42,7 @@ public class PriceCalculation extends Utils {
                 System.out.println("No operator price available ");
             }
         } catch (Exception e) {
-            throw new PrefixException("Prefix Exception due to : "+e.getMessage());
+            throw new PrefixException("Prefix Exception due to : " + e.getMessage());
         }
     }
 }

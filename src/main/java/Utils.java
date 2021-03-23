@@ -49,18 +49,15 @@ public abstract class Utils {
         } catch (Exception e) {
             throw new PrefixException("Prefix Exception due to : " + e.getMessage());
         }
-
         return operatorPrefixMatchMap;
     }
 
     public static double getLongPrefixPrice(Map<Integer, Double> prefixMap) throws PrefixException {
         double operatorCharge = 0.0;
         try {
-
             // define AtomicInteger for hold the largest prefix
             // used AtomicInteger because of the lambda usage
             AtomicInteger longestPrefix = new AtomicInteger();
-
             // lambda for each function for get elements from map
             if (prefixMap != null) {
                 prefixMap.forEach((key, value) -> {
@@ -75,8 +72,6 @@ public abstract class Utils {
         } catch (Exception e) {
             throw new PrefixException("Prefix Exception due to : " + e.getMessage());
         }
-
         return operatorCharge;
     }
-
 }
