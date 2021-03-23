@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public abstract class Utils {
+public abstract class
+Utils {
     public static Map<Integer, Double> getDataFromFile(String fileName) {
         //Initialize the map for holding the prefix as key and price as value
         Map<Integer, Double> operatorMap = new HashMap<>();

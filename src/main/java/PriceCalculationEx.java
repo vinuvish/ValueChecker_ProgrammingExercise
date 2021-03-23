@@ -1,12 +1,15 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PriceCalculationEx extends Utils {
+    static final String PATH = "src/main/java/data/";
 
     public static void main(String[] args) {
         String number = "26820212345";
+        calculate(number);
+
+    }
+    public static void calculate(String number){
         try {
             //Initialize the HashMap for hold the data as key value pair
             Map<Integer, Double> operatorAMap = new HashMap<>();
@@ -14,8 +17,8 @@ public class PriceCalculationEx extends Utils {
 
             // calling getDataFromFile abstract method for get the date
             // from the data file as hashmap
-            operatorAMap = getDataFromFile("src/data/operator_a.txt");
-            operatorBMap = getDataFromFile("src/data/operator_b.txt");
+            operatorAMap = getDataFromFile(PATH+"operator_a.txt");
+            operatorBMap = getDataFromFile(PATH +"operator_b.txt");
 
             //Initialize the HashMap for hold the match prefix
             Map<Integer, Double> operatorAPrefixMatchMap = new HashMap<>();
@@ -36,12 +39,14 @@ public class PriceCalculationEx extends Utils {
                 // print the price by calling getLongPrefixPrice abstract method
                 System.out.println("You will have to pay " + getLongPrefixPrice(operatorBPrefixMatchMap) + "$ in Operator B ");
             }
-            if(operatorAPrefixMatchMap.isEmpty() || operatorBPrefixMatchMap.isEmpty()){
+            if(operatorAPrefixMatchMap.isEmpty() && operatorBPrefixMatchMap.isEmpty()){
                 System.out.println("No operator price available ");
             }
         } catch (Exception e) {
             System.out.println(e);
         }
+
     }
+
 
 }
