@@ -17,11 +17,6 @@ public class PriceCalculationEx extends Utils {
             operatorAMap = getDataFromFile("src/data/operator_a.txt");
             operatorBMap = getDataFromFile("src/data/operator_b.txt");
 
-            //Initialize the List for hold the match prefix
-            List<Double> operatorAPrefixList = new ArrayList<Double>();// define list to add Opco A prefix matches
-            List<Double> operatorBPrefixList = new ArrayList<Double>();// define list to add Opco B matches
-
-
             //Initialize the HashMap for hold the match prefix
             Map<Integer, Double> operatorAPrefixMatchMap = new HashMap<>();
             Map<Integer, Double> operatorBPrefixMatchMap = new HashMap<>();
@@ -43,7 +38,6 @@ public class PriceCalculationEx extends Utils {
             }
             if(operatorAPrefixMatchMap.isEmpty() || operatorBPrefixMatchMap.isEmpty()){
                 System.out.println("No operator price available ");
-
             }
         } catch (Exception e) {
             System.out.println(e);
