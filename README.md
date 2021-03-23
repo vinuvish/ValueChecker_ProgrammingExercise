@@ -9,8 +9,6 @@
 - Java
 - Maven
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
 
 ## Cv [Click here](https://github.com/vinuvish/ValueChecker_ProgrammingExercise/blob/main/Cv/KoneshweranVishnu_curriculum%20vitae.pdf) 
 
